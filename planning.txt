@@ -1,0 +1,8 @@
+plan van aanpak:
+1. inlog maken.
+2. session starten
+3. ophalen van bitly api
+4. weergave van bitly
+5. toevoegen van bitly links\
+6. aanpassen van bitly links
+7. verwijderen van de links
