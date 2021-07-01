@@ -3,37 +3,54 @@
 <head>
 </head>
 <body>
-<?php
-echo "hallo Wereld"
-
-/*
-client_id - your application's Bitly client id.
-client_secret - your application's Bitly client secret.
-code - the OAuth verification code acquired via OAuth's web authentication protocol.
-redirect_uri - the page to which a user was redirected upon successfully authenticating.
-state - optional state to include in the redirect URI.
-grant_type - optional, if present must be authorization_code.
-*/
-?>
-<form id="table1" action="dbinlog.php" method="POST">
+<form action="" method="POST">
 
 Name: <input type = "text" placeholder = "Gebruikersnaam" name = "username" required>
-Password<input type = "password" placeholder = "wachtwoord" name = "wachtwoord" required>
+Password<input type = "password" placeholder = "wachtwoord" name = "password" required>
 
-<button type = "submit" class="btn btn-success" id="pt">Inloggen</button>
+<button type = "submit" class="button">Inloggen</button>
 
 </form>
 
+<?php
+
+$user= $_POST['username'];
+$password=  $_POST ['password'];
 
 
-<!--
-POST /oauth/access_token HTTP/1.1
-Host: api-ssl.bitly.com
-Authorization: Basic czZCaGRSa3F0MzpnWDF
-Content-Type: application/x-www-form-urlencoded
+$ch = curl_init();
 
-client_id=f97b78b88672bed06cf629bba45612ae076468b4&client_secret=535808a84244c9f55248a178690294691b1f2db9
+curl_setopt($ch, CURLOPT_URL, 'https://api-ssl.bitly.com/oauth/access_token');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=password&username=$user&password=$password");
+curl_setopt($ch, CURLOPT_USERPWD, 'f97b78b88672bed06cf629bba45612ae076468b4' . ':' . '535808a84244c9f55248a178690294691b1f2db9');
 
-crl -u "username:password" -X POST "https://api-ssl.bitly.com/oauth/access_token"
--->
+$headers = array();
+$headers[] = 'Content-Type: application/x-www-form-urlencoded';
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+  echo 'Error:' . curl_error($ch);
+}
+
+ $token=json_decode($result,true);
+
+ if(isset($token["access_token"]))
+{session_start();
+    $_SESSION['user'] = $user;
+    $_SESSION['token'] = $token["access_token"];
+    header('Location:index.php');  
+}
+
+
+curl_close($ch);
+
+/*
+session_start();
+$_SESSION['id'] = $dbid;
+$_SESSION['name'] = $username;
+*/
+?>
 </body>
