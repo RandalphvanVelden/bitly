@@ -47,10 +47,5 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
-/*
-session_start();
-$_SESSION['id'] = $dbid;
-$_SESSION['name'] = $username;
-*/
 ?>
 </body>
