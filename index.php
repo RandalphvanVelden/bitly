@@ -3,9 +3,10 @@
  $user=$_SESSION['user'];
  $token=$_SESSION['token'];
 
+ include 'header.php';
 
 
- echo "logged in as $user <br>"; 
+
 
 
  
@@ -51,7 +52,7 @@ foreach($links['links'] as $link){ ?>
     <td><?php echo $link['id'];?></td>
     <td><?php echo $link['title'];?></td>
     <td><?php echo $link['long_url'];?></td>
-    <td><button></td>
+    <td><button type="" value="">bewerken</button></td>
     </tr>
     <?php } ?>
     </tbody>
