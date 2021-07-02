@@ -3,6 +3,7 @@
 <head>
 </head>
 <body>
+<!--log in form -->
 <form action="" method="POST">
 
 Name: <input type = "text" placeholder = "Gebruikersnaam" name = "username" required>
@@ -13,7 +14,7 @@ Password<input type = "password" placeholder = "wachtwoord" name = "password" re
 </form>
 
 <?php
-
+//verbinden met bitly
 $user= $_POST['username'];
 $password=  $_POST ['password'];
 
@@ -35,8 +36,10 @@ if (curl_errno($ch)) {
   echo 'Error:' . curl_error($ch);
 }
 
+//json omzetten naar array
  $token=json_decode($result,true);
 
+ //sessie starten met token en user name en redirecten naar index.php
  if(isset($token["access_token"]))
 {session_start();
     $_SESSION['user'] = $user;
