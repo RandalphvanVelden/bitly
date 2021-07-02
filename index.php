@@ -29,10 +29,7 @@
  curl_close($ch);
 
  $links=json_decode($result,true);
- 
-
 ?>
-
 
 <table>
 <thead>
