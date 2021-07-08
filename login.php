@@ -3,6 +3,10 @@
 <head>
 </head>
 <body>
+<?php
+$user = "null";
+$password = "null";
+?>
 <!--log in form -->
 <form action="" method="POST">
 
@@ -14,11 +18,12 @@ Password<input type = "password" placeholder = "wachtwoord" name = "password" re
 </form>
 
 <?php
-//verbinden met bitly
-$user= $_POST['username'];
+
+$user = $_POST['username'];
 $password=  $_POST ['password'];
 
 
+//verbinden met bitly
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'https://api-ssl.bitly.com/oauth/access_token');
