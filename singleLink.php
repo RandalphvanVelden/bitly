@@ -1,10 +1,5 @@
 <?php
-session_start();
-$user=$_SESSION['user'];
-$token=$_SESSION['token'];
-
-
-
+include 'session.php';
 
 include 'header.php';
 
@@ -51,7 +46,11 @@ $data= array('title'=>$title );
       echo 'Error:' . curl_error($ch);
   }
   curl_close($ch);
-print_r($result);
-echo 'meenemen van $result naar main page'
+
+
+
+$url = "index.php?".http_build_query(Array(
+  "result" => $result)); 
 ?>
-<button lass="button" onClick="parent.location='index.php'". >overzicht</button>
+<button class="button" onClick="parent.location='<?php echo $url ?>'" >overzicht</button>
+

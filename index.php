@@ -1,12 +1,9 @@
 <?php
- session_start();
- $user=$_SESSION['user'];
- $token=$_SESSION['token'];
-
+ include 'session.php';
 
  include 'header.php';
  
- // ophalen van grou[ links
+ // ophalen van group links
  $ch = curl_init();
 
  curl_setopt($ch, CURLOPT_URL, 'https://api-ssl.bitly.com/v4/groups/Bl6o9ACPoCZ/bitlinks?size=10&page=1');
@@ -50,7 +47,7 @@ $url = "singleLink.php?".http_build_query(Array(
     <td><?php echo $link['id'];?></td>
     <td><?php echo $link['title'];?></td>
     <td><?php echo $link['long_url'];?></td>
-    <td><button type="submit" class="button" onClick="parent.location='<?php echo $url ?>'". >bewerken</button></td>
+    <td><button type="submit" class="button" onClick="parent.location='<?php echo $url ?>'" >bewerken</button></td>
     </tr>
     <?php } ?>
     </tbody>
