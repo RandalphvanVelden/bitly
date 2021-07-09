@@ -2,5 +2,5 @@
 include 'session.php';
 
 session_destroy();
-header('Location:title.php');
+header('Location:titlepage.php');
 ?>

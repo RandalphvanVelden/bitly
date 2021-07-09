@@ -19,9 +19,16 @@ Password<input type = "password" placeholder = "wachtwoord" name = "password" re
 
 <?php
 
-$user = $_POST['username'];
-$password=  $_POST ['password'];
+$user = '';
+$password = '';
 
+if(isset($_POST['username'])){
+$user = $_POST['username'];
+}
+
+if(isset($_POST['password'])){
+$password=  $_POST ['password'];
+}
 
 //verbinden met bitly
 $ch = curl_init();

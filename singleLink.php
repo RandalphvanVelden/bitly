@@ -21,10 +21,11 @@ url<input type = "text" name = "long_url"  value="<?php echo $link['long_url']?>
 </form>
 
 <?php
+$title = '';
 
-
+if(isset($_POST['title'])){
 $title = $_POST['title'];
-
+}
 
 $data= array('title'=>$title );
 

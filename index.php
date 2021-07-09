@@ -42,12 +42,16 @@ foreach($links['links'] as $link){
 
 $url = "singleLink.php?".http_build_query(Array(
     "link" => $link)); 
+$url2 = "removeLink.php?".http_build_query(Array(
+        "link" => $link)); 
+    
  ?>
     <tr>
     <td><?php echo $link['id'];?></td>
     <td><?php echo $link['title'];?></td>
-    <td><?php echo $link['long_url'];?></td>
+    <td><a href='<?php echo $link['long_url'];?>'><?php echo $link['long_url'];?></a></td>
     <td><button type="submit" class="button" onClick="parent.location='<?php echo $url ?>'" >bewerken</button></td>
+    <td><button type="submit" class="button" onClick="parent.location='<?php echo $url2 ?>'" >verbergenn</button></td>
     </tr>
     <?php } ?>
     </tbody>
@@ -55,7 +59,7 @@ $url = "singleLink.php?".http_build_query(Array(
 
  <form action="" method="POST">
 
- URL: <input type = "text" placeholder = "paste long URL" name = "long_url" required>
+ URL: <input type = "text" placeholder = "paste long URL" name = "long_url" value = '' required>
  Title: <input type = "text" placeholder = "titel" name = "title" required>
  
  <button type = "submit" class="button">Save</button>
@@ -64,8 +68,16 @@ $url = "singleLink.php?".http_build_query(Array(
 
 <?php
 
- $long_url=$_POST['long_url'];
- $title = $_POST['title'];
+$long_url = ''; 
+$title = '';
+
+if(isset($_POST['long_url'])){
+    $long_url = $_POST['long_url'];
+}
+
+if(isset($_POST['title'])){
+    $title = $_POST['title'];
+}
  
 $data= array('title'=>$title, 'long_url'=>$long_url );
 $ch = curl_init();
@@ -86,4 +98,3 @@ if (curl_errno($ch)) {
 }
 curl_close($ch);
 ?>
-<p> verwijderen moet nog </p>
