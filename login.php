@@ -21,12 +21,12 @@ $password = '';
 
 if(isset($_POST['username']))
   {
-    $user = $_POST['username'];
+    $user =($_POST['username']);
   }
 
 if(isset($_POST['password']))
   {
-    $password=  $_POST ['password'];
+    $password= ( $_POST ['password']);
   }
 
 //verbinden met bitly
@@ -51,14 +51,36 @@ if (curl_errno($ch))
 //json omzetten naar array
  $token=json_decode($result,true);
 
+if(isset($token["access_token"])){
+ // ophalen group
+ $ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, 'https://api-ssl.bitly.com/v4/groups');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+
+$headers = array();
+$headers[] = "Authorization: Bearer {$token['access_token']}";
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+curl_close($ch);
+
+$groups = json_decode($result,true);
+
  //sessie starten met token en user name en redirecten naar index.php
- if(isset($token["access_token"]))
-  {
-    session_start();
-      $_SESSION['user'] = $user;
-      $_SESSION['token'] = $token["access_token"];
+ 
+session_start();
+  $_SESSION['user'] =  htmlspecialchars($user);
+  $_SESSION['token'] = $token["access_token"];
+  $_SESSION['groups'] = $groups;
       
-      header('Location:index.php');  
+     
+  header('Location:index.php');  
   }
   
 curl_close($ch);

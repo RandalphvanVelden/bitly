@@ -7,6 +7,7 @@ $token=$_SESSION['token'];
 if (isset($token))
    {
       $user=$_SESSION['user'];
+      $groups=$_SESSION['groups'];
    }
 
 else

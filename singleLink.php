@@ -6,7 +6,8 @@ include 'header.php';
 // weergeven meegestuurde data die nodig is
 $link = $_GET['link'];
 $id= $link['id'];
-$title = $link['title']; 
+if (isset($link['title'])){ $title = $link['title'];}
+else {$title = '';}
 $long_url = $link['long_url'];     
 
 ?>
@@ -15,8 +16,8 @@ $long_url = $link['long_url'];
     <form action="" method="POST">
 
 id: <input type = "text" name = "id" value= "<?php echo $link['id']?>" disabled>
-title<input type = "text" name = "title"  value="<?php echo $link['title']?>">
-url<input type = "text" name = "long_url"  value="<?php echo $link['long_url']?>"disabled>
+naam: <input type = "text" name = "title"   value="<?php echo $title?>">
+url: <input type = "text" name = "long_url"  value="<?php echo $link['long_url']?>"disabled>
 <button type = "submit" class="button">edit</button>
 </form>
 

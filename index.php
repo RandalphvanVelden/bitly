@@ -20,6 +20,18 @@ $long_url = '';
 $title = '';
 $var= '0';
 
+// voor meerdere groepen
+?>
+<td><form action="" method="post">
+    <select name="var" onchange="this.form.submit();">
+<?php foreach($groups['groups'] as $group){
+    $group = $group['guid'];?>
+    <option value="<?php $group ?>"><?php echo $group ?></option>                
+<?php   
+}?>
+  </select>
+                </form> 
+<?php
 if(isset($_POST['long_url']))
     {
         $long_url = htmlspecialchars($_POST['long_url']);
@@ -63,15 +75,15 @@ curl_close($ch);
     </thead>
     <tbody>
         <tr>
-            <td>id</td>
-            <td>naam</td>
-            <td> link</td> 
+            <td>id:</td>
+            <td>naam:</td>
+            <td> url:</td> 
             <td><form action="" method="post">
                     <select name="var" onchange="this.form.submit();">
                         <option value="0">visibility</option>
-                        <option value="1">visible</option>
-                        <option value="2">hidden</option>
-                        <option value="3">both</option>
+                        <option value="1">zichtbaar</option>
+                        <option value="2">verborgen</option>
+                        <option value="3">beide</option>
                     </select>
                 </form> 
             </td>
