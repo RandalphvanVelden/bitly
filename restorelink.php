@@ -6,8 +6,8 @@ $link = $_GET['link'];
 $id= $link['id'];
 
    
-// de link word op hidden gezet
-$data= array('archived'=>true);
+
+$data= array('archived'=>false);
 
   $ch = curl_init();
 
@@ -29,6 +29,6 @@ $data= array('archived'=>true);
   curl_close($ch);
   
 
-// redirect naar de index.php
+
 header('Location:index.php');
 ?>
