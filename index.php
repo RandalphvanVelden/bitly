@@ -20,13 +20,16 @@ $long_url = '';
 $title = '';
 $var= '0';
 
-if(isset($_POST['long_url'])){
-    $long_url = htmlspecialchars($_POST['long_url']);
-}
+if(isset($_POST['long_url']))
+    {
+        $long_url = htmlspecialchars($_POST['long_url']);
+    }
 
-if(isset($_POST['title'])){
-    $title = htmlspecialchars($_POST['title']);
-}
+if(isset($_POST['title']))
+    {
+        $title = htmlspecialchars($_POST['title']);
+    }
+
  // toevoegen van de nieuwe link bij bitly
 $data= array('title'=>$title, 'long_url'=>$long_url );
 $ch = curl_init();
@@ -42,48 +45,51 @@ $headers[] = 'Content-Type: application/json';
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 $result = curl_exec($ch);
-if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
-}
+
+if (curl_errno($ch)) 
+    {
+        echo 'Error:' . curl_error($ch);
+    }
+
 curl_close($ch);
 ?>
 
 <!-- weergave van de links in een tabel -->
 <table>
-<thead>
- <tr>
- <th> tabel </th>
- </tr>
- </thead>
- <tbody>
- <tr>
- <td>id</td>
- <td>naam</td>
- <td> link</td> 
- <td><form action="" method="post">
-<select name="var" onchange="this.form.submit();">
-<option value="0">visibility</option>
-<option value="1">visible</option>
-<option value="2">hidden</option>
-<option value="3">both</option>
-</select>
-</form> </td>
- </tr>
+    <thead>
+        <tr>
+            <th> Bitly links </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>naam</td>
+            <td> link</td> 
+            <td><form action="" method="post">
+                    <select name="var" onchange="this.form.submit();">
+                        <option value="0">visibility</option>
+                        <option value="1">visible</option>
+                        <option value="2">hidden</option>
+                        <option value="3">both</option>
+                    </select>
+                </form> 
+            </td>
+        </tr>
+    <?php 
+    // inhoud van de tabel afhankelijk van wat je wil laten zien
+    if(isset($_POST['var']))
+        {
+            $var = $_POST['var'];
+            if ($var == 1) include 'visibleTable.php';
+            if ($var == 2) include 'hiddenTable.php';
+            if ($var == 3){ include 'visibleTable.php'; include 'hiddenTable.php';}
+        }
 
- <?php 
- // inhoud van de tabel afhankelijk van wat je wil laten zien
-if(isset($_POST['var'])){
-    $var = $_POST['var'];
-       
-if ($var == 1) include 'visibleTable.php';
-if ($var == 2) include 'hiddenTable.php';
-if ($var == 3){ include 'visibleTable.php'; include 'hiddenTable.php';}
- }
-
- else include 'visibleTable.php'; 
-?>
+    else include 'visibleTable.php'; 
+    ?>
     </tbody>
-    </table>
+</table>
 
  
 

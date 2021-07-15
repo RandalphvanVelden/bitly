@@ -1,7 +1,7 @@
 <?php
 include 'session.php';
 
-
+// ophalen benodigde gegevens
 $link = $_GET['link'];
 $id= $link['id'];
 
@@ -23,9 +23,10 @@ $data= array('archived'=>true);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   
   $result = curl_exec($ch);
-  if (curl_errno($ch)) {
+  if (curl_errno($ch)) 
+    {
       echo 'Error:' . curl_error($ch);
-  }
+    }
   curl_close($ch);
   
 

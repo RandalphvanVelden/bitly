@@ -4,10 +4,12 @@ session_start();
 $token=$_SESSION['token'];
 
 
-if (isset($token)){
-   $user=$_SESSION['user'];
-}
+if (isset($token))
+   {
+      $user=$_SESSION['user'];
+   }
 
-else{
+else
+   {
      header('Location:titlepage.php');   
-}
+   }

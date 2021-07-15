@@ -23,9 +23,10 @@ $data= array('archived'=>false);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   
   $result = curl_exec($ch);
-  if (curl_errno($ch)) {
+  if (curl_errno($ch)) 
+    {
       echo 'Error:' . curl_error($ch);
-  }
+    }
   curl_close($ch);
   
 

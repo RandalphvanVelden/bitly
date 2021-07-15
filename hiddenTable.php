@@ -21,14 +21,14 @@ $ch = curl_init();
 ;
 
 // deel van de table dat word weergegeven als je voor hidden kiest
-foreach($links['links'] as $link ){ 
-
-    $url = "singleLink.php?".http_build_query(Array(
+foreach($links['links'] as $link )
+    { 
+        $url = "singleLink.php?".http_build_query(Array(
         "link" => $link)); 
-    $url2 = "restoreLink.php?".http_build_query(Array(
+        $url2 = "restoreLink.php?".http_build_query(Array(
             "link" => $link)); 
-        
-     ?>
+        ?>
+
         <tr>
         <td><?php echo $link['id'];?></td>
         <td><?php echo $link['title'];?></td>
@@ -36,7 +36,8 @@ foreach($links['links'] as $link ){
         <td><button type="submit" class="button" onClick="parent.location='<?php echo $url ?>'" >bewerken</button></td>
         <td><button type="submit" class="button" onClick="parent.location='<?php echo $url2 ?>'" >zichtbaar maken</button></td>
         </tr>
-        <?php } ?>
+        <?php 
+    } ?>
        
 
 

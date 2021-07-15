@@ -23,9 +23,10 @@ url<input type = "text" name = "long_url"  value="<?php echo $link['long_url']?>
 <?php
 $title = '';
 
-if(isset($_POST['title'])){
-$title =htmlspecialchars($_POST['title']);
-}
+if(isset($_POST['title']))
+  {
+    $title = htmlspecialchars($_POST['title']);
+  }
 
 
 // versturen van de aangepaste dat naar bitly
@@ -45,9 +46,10 @@ $data= array('title'=>$title );
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   
   $result = curl_exec($ch);
-  if (curl_errno($ch)) {
+  if (curl_errno($ch)) 
+    {
       echo 'Error:' . curl_error($ch);
-  }
+    }
   curl_close($ch);
 ?>
 
