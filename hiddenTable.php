@@ -20,6 +20,7 @@ $ch = curl_init();
  $links=json_decode($result,true);
 ;
 
+// deel van de table dat word weergegeven als je voor hidden kiest
 foreach($links['links'] as $link ){ 
 
     $url = "singleLink.php?".http_build_query(Array(

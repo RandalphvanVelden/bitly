@@ -71,6 +71,7 @@ curl_close($ch);
  </tr>
 
  <?php 
+ // inhoud van de tabel afhankelijk van wat je wil laten zien
 if(isset($_POST['var'])){
     $var = $_POST['var'];
        

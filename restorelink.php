@@ -6,7 +6,7 @@ $link = $_GET['link'];
 $id= $link['id'];
 
    
-
+// de link word terug gezet naar zichtbaar
 $data= array('archived'=>false);
 
   $ch = curl_init();
@@ -29,6 +29,6 @@ $data= array('archived'=>false);
   curl_close($ch);
   
 
-
+// redirect naar index.php
 header('Location:index.php');
 ?>
