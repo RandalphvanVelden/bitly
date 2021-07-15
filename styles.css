@@ -1,0 +1,11 @@
+.button{
+        background-color:#ee6123 ;
+        border-radius: 100px / 50px;
+        border-style: none;
+       
+  
+}
+
+.button:hover{
+    font-size: 90%;
+}

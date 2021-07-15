@@ -1,4 +1,11 @@
-<?php
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <?php
  include 'session.php';
 
  include 'header.php';
@@ -104,6 +111,6 @@ curl_close($ch);
 </table>
 
  
-
+    </body>
 
 
