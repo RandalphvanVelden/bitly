@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <?php
+ <div class ="content">
+ <?php
  include 'session.php';
 
  include 'header.php';
@@ -13,14 +14,15 @@
  ?>
 
 <!-- formulier voor het toevoegen van een bitly -->
- <form action="index.php" method="POST">
+ <form  class= "add-content" action="index.php" method="POST">
 
  URL: <input type = "text" placeholder = "paste long URL" name = "long_url"  required>
  Title: <input type = "text" placeholder = "titel" name = "title" required>
  
- <button type = "submit" class="button">Save</button>
+ <button class ="button" type = "submit">Save</button>
  
  </form>
+
 
 <?php
 $long_url = ''; 
@@ -29,7 +31,8 @@ $var= '0';
 
 // voor meerdere groepen
 ?>
-<td><form action="" method="post">
+<div class="group-choice"> 
+<form  action="" method="post">
     <select name="var" onchange="this.form.submit();">
 <?php foreach($groups['groups'] as $group){
     $group = $group['guid'];?>
@@ -37,7 +40,9 @@ $var= '0';
 <?php   
 }?>
   </select>
-                </form> 
+</form> 
+</div>
+
 <?php
 if(isset($_POST['long_url']))
     {
@@ -74,7 +79,9 @@ curl_close($ch);
 ?>
 
 <!-- weergave van de links in een tabel -->
-<table>
+<div class= "table">
+   
+<table id="bitlylinks">
     <thead>
         <tr>
             <th> Bitly links </th>
@@ -85,7 +92,8 @@ curl_close($ch);
             <td>id:</td>
             <td>naam:</td>
             <td> url:</td> 
-            <td><form action="" method="post">
+            <td> </td>
+            <td class= "visibility-choice"><form action="" method="post">
                     <select name="var" onchange="this.form.submit();">
                         <option value="0">visibility</option>
                         <option value="1">zichtbaar</option>
@@ -109,8 +117,9 @@ curl_close($ch);
     ?>
     </tbody>
 </table>
-
- 
+    
+    </div>
+    </div>
     </body>
 
 

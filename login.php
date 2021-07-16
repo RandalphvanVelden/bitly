@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+ <div class ="content">
 <?php
 $user = "null";
 $password = "null";
 ?>
+
 <!--log in form -->
-<form action="" method="POST">
+<form class="login-form" action="" method="POST">
     Name: <input type = "text" placeholder = "Gebruikersnaam" name = "username" required>
     Password<input type = "password" placeholder = "wachtwoord" name = "password" required>
 
     <button type = "submit" class="button">Inloggen</button>
 </form>
+
 
 <?php
 $user = '';
@@ -86,4 +90,5 @@ session_start();
 curl_close($ch);
 
 ?>
+</div>
 </body>

@@ -1,4 +1,12 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <div class ="content">
+   
+   <?php
 include 'session.php';
 
 include 'header.php';
@@ -6,6 +14,7 @@ include 'header.php';
 // weergeven meegestuurde data die nodig is
 $link = $_GET['link'];
 $id= $link['id'];
+
 if (isset($link['title'])){ $title = $link['title'];}
 else {$title = '';}
 $long_url = $link['long_url'];     
@@ -13,7 +22,7 @@ $long_url = $link['long_url'];
 ?>
 
 <!-- formulier voor het aanpassen van de link -->
-    <form action="" method="POST">
+    <form class="change-link"action="" method="POST">
 
 id: <input type = "text" name = "id" value= "<?php echo $link['id']?>" disabled>
 naam: <input type = "text" name = "title"   value="<?php echo $title?>">
@@ -55,5 +64,6 @@ $data= array('title'=>$title );
 ?>
 
 <!-- knop om weer naar index.php te gaan -->
-<button class="button" onClick="parent.location='index.php'" >overzicht</button>
+<button class="button return-overzicht" onClick="parent.location='index.php'" >overzicht</button>
 
+  </div>

@@ -29,12 +29,12 @@ foreach($links['links'] as $link )
         ?>
 
         <tr>
-        <td><?php echo $link['id'];?></td>
-        <td><?php if (isset($link['title'])){ echo $link['title'];}
+        <td class = "id-table-content"><?php echo $link['id'];?></td>
+        <td class = "title-table-content"><?php if (isset($link['title'])){ echo $link['title'];}
             else {echo '';}?></td>
-        <td><a href='<?php echo $link['long_url'];?>'><?php echo $link['long_url'];?></a></td>
-        <td><button type="submit" class="button" onClick="parent.location='<?php echo $url ?>'" >bewerken</button></td>
-        <td><button type="submit" class="button" onClick="parent.location='<?php echo $url2 ?>'" >zichtbaar maken</button></td>
+        <td class = "link-table-content"><a href='<?php echo $link['long_url'];?>'><?php echo $link['long_url'];?></a></td>
+        <td class="btn-table"><button type="submit" class="button" onClick="parent.location='<?php echo $url ?>'" >bewerken</button></td>
+        <td class ="btn-table"><button type="submit" class="button visibility" onClick="parent.location='<?php echo $url2 ?>'" >zichtbaar maken</button></td>
         </tr>
         <?php 
     } ?>

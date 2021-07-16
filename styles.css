@@ -1,11 +1,138 @@
-.button{
-        background-color:#ee6123 ;
-        border-radius: 100px / 50px;
-        border-style: none;
-       
-  
+
+body{
+    background-color: rgb(218, 224, 231);
 }
+.content{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.button{
+    position: relative;
+    background-color:#ee6123 ;
+    border-style: none;
+    height: 20px;
+}
+
+.button::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 20px solid #ee6123;
+    border-left: 20px solid transparent;
+    border-top-left-radius: 50%;
+    left: -20px;
+    top: 0;
+  }
 
 .button:hover{
     font-size: 90%;
+    background-color: #fa3310;
 }
+
+.button:hover:before{
+    font-size: 90%;
+    border-top: 20px solid #fa3310;
+    border-left: 20px solid transparent;
+}
+
+.group-choice{
+    text-align: right;
+}
+
+.visibility-choice{
+    text-align: right;  
+}
+
+.table{
+    background-color: lightgray;
+    margin: auto;  
+    width:100%;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 10px;
+}
+#bitlylinks {
+    margin: auto;
+    width: 100%;  
+}
+
+#bitlylinks tr:nth-child(even){background-color: #f2f2f2;}
+
+#bitlylinks tr:hover {background-color: #ddd;}
+
+#bitlylinks tr{
+ padding:5px;
+}
+
+.btn-table{
+    width: 10%;
+}
+
+.id-table-content{
+    width:fit-content;
+}
+
+.title-table-content{
+    min-width: 30%;
+    max-width: fit-content;
+}
+
+.link-table-content{
+    min-width: 40%;
+    max-width: fit-content;
+}
+
+.visibility{
+    width: 95%;
+}
+
+.header{
+    position: relative;
+    background-color: lightgrey;
+    height: 30px;
+    padding-top: 10px;
+    margin-bottom: 50px;
+    
+}
+
+.log{
+    position:absolute;
+    right:0;
+}
+
+.add-content{
+width: 42%;
+margin-bottom: 25px;
+display: flex;
+    justify-content: space-between;
+}
+
+
+.change-link {
+    width: 58%;
+    margin:auto;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.return-overzicht{
+  width: 75px;
+  align-self: flex-end;
+}
+
+h1{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.login-form{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
