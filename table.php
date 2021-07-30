@@ -17,7 +17,7 @@ function table()
                 $var = $_POST['var'];
                 if ($var == 1) $visibility = 'visible';
                 if ($var == 2) $visibility = 'hidden';
-                if ($var == 3)
+                if ($var == 3);
             }
 
         else $visibility = 'visible';
