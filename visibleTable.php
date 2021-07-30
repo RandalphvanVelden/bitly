@@ -23,9 +23,11 @@
 
  // deel van de table dat word weergegeven als je voor zichtbaar kiest
  foreach($links['links'] as $link )
-    { $data= array('id' =>$link['id'],'title'=>$link['title'],'long_url'=>$link['long_url']);
-        $url = "singleLink.php?".http_build_query(Array("link"=> $data)); 
-        $url2 = "removeLink.php?".http_build_query(Array("link" => $data)); 
+    { if (!isset($link['title'])){$link['title']="";}
+   
+        $info= array('id' =>$link['id'],'title'=>$link['title'],'long_url'=>$link['long_url']);
+        $url = "singleLink.php?".http_build_query(Array("link"=> $info)); 
+        $url2 = "removeLink.php?".http_build_query(Array("link" => $info)); 
             
         ?>
         <tr>

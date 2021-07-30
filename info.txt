@@ -1,6 +1,7 @@
 user: randalph01
 password: randalphishier
 
-Dingen die nog gedaan kunnen worden:
-extra bitlinks functies zoals weergave aantal hits.
-tabel ondergebracht in een apparte class.
+class toegevoegd voor connect. 
+class aangepast voor remove link
+class aangepast voor restore link
+class aangepast voor singlelink

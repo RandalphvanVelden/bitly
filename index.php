@@ -11,6 +11,18 @@
 
  include 'header.php';
  
+ include 'bitlyconnect.php';
+
+ include 'table.php';
+
+
+$long_url = ''; 
+$title = '';
+$var= '0';
+$ch = '';
+$method = '';
+$visibility = '';
+$group = '';
  ?>
 
 <!-- formulier voor het toevoegen van een bitly -->
@@ -23,27 +35,8 @@
  
  </form>
 
-
 <?php
-$long_url = ''; 
-$title = '';
-$var= '0';
-
-// voor meerdere groepen
-?>
-<div class="group-choice"> 
-<form  action="" method="post">
-    <select name="var" onchange="this.form.submit();">
-<?php foreach($groups['groups'] as $group){
-    $group = $group['guid'];?>
-    <option value="<?php $group ?>"><?php echo $group ?></option>                
-<?php   
-}?>
-  </select>
-</form> 
-</div>
-
-<?php
+// toevoegen van eeen link
 if(isset($_POST['long_url']))
     {
         $long_url = htmlspecialchars($_POST['long_url']);
@@ -56,70 +49,34 @@ if(isset($_POST['title']))
 
  // toevoegen van de nieuwe link bij bitly
 $data= array('title'=>$title, 'long_url'=>$long_url );
-$ch = curl_init();
+$id = 'none';
+$method ='post';
 
-curl_setopt($ch, CURLOPT_URL, 'https://api-ssl.bitly.com/v4/bitlinks');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-
-$headers = array();
-$headers[] = "Authorization: Bearer {$token}";
-$headers[] = 'Content-Type: application/json';
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-$result = curl_exec($ch);
-
-if (curl_errno($ch)) 
-    {
-        echo 'Error:' . curl_error($ch);
-    }
-
-curl_close($ch);
+$newLink = new Connect($data, $id, $token, $method, $visibility, $group);
+$newLink->connect();
 ?>
 
-<!-- weergave van de links in een tabel -->
-<div class= "table">
-   
-<table id="bitlylinks">
-    <thead>
-        <tr>
-            <th> Bitly links </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>id:</td>
-            <td>naam:</td>
-            <td> url:</td> 
-            <td> </td>
-            <td class= "visibility-choice"><form action="" method="post">
-                    <select name="var" onchange="this.form.submit();">
-                        <option value="0">visibility</option>
-                        <option value="1">zichtbaar</option>
-                        <option value="2">verborgen</option>
-                        <option value="3">beide</option>
-                    </select>
-                </form> 
-            </td>
-        </tr>
-    <?php 
-    // inhoud van de tabel afhankelijk van wat je wil laten zien
-    if(isset($_POST['var']))
-        {
-            $var = $_POST['var'];
-            if ($var == 1) include 'visibleTable.php';
-            if ($var == 2) include 'hiddenTable.php';
-            if ($var == 3){ include 'visibleTable.php'; include 'hiddenTable.php';}
-        }
+<!-- voor meerdere groepen -->
 
-    else include 'visibleTable.php'; 
-    ?>
-    </tbody>
-</table>
-    
+<div class="group-choice"> 
+<form  action="" method="post">
+    <select name="var" onchange="this.form.submit();">
+<?php foreach($groups['groups'] as $group){
+    $group = $group['guid'];?>
+    <option value="<?php $group ?>"><?php echo $group ?></option>                
+<?php   
+}?>
+  </select>
+</form> 
+</div>
+<?php
+// $table = new Table($group);
+// $table->table();
+?>
     </div>
     </div>
-    </body>
+
+
+</body>
 
 
