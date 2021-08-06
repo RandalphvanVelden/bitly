@@ -13,8 +13,9 @@
  
  include 'bitlyconnect.php';
 
- include 'table.php';
+ include 'tables.php';
 
+ include 'classes.php';
 
 $long_url = ''; 
 $title = '';
@@ -23,6 +24,7 @@ $ch = '';
 $method = '';
 $visibility = '';
 $group = '';
+
  ?>
 
 <!-- formulier voor het toevoegen van een bitly -->
@@ -54,6 +56,7 @@ $method ='post';
 
 $newLink = new Connect($data, $id, $token, $method, $visibility, $group);
 $newLink->connect();
+
 ?>
 
 <!-- voor meerdere groepen -->
@@ -70,8 +73,17 @@ $newLink->connect();
 </form> 
 </div>
 <?php
-// $table = new Table($group);
-// $table->table();
+$choice=new Choice();
+$choice->form();
+$visibility = $choice->visibility;
+
+
+$table = new Table($data, $id, $token, $method, $visibility, $group);
+$table->table();
+
+
+
+
 ?>
     </div>
     </div>

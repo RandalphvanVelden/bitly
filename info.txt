@@ -5,3 +5,11 @@ class toegevoegd voor connect.
 class aangepast voor remove link
 class aangepast voor restore link
 class aangepast voor singlelink
+
+
+            
+                        
+                        <td class="btn-table "><button type="submit" class="button visibility" 
+                        <?php   if ($this->visibility = 'visible'){?> onClick="parent.location='<?php echo $url2 ?>'" >verbergen</button><?php;}    
+                                if ($this->visibility = 'hidden'){?> onClick="parent.location='<?php echo $url3 ?>'" >zichtbaar maken</button><?php;}?>
+                        </td>
