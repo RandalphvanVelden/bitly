@@ -1,7 +1,6 @@
 <?php
-include 'session.php';
+include 'include.php';
 
-include 'bitlyconnect.php';
 
 // ophalen meegestuurde data
 $link = $_GET['link'];

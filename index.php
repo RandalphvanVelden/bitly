@@ -7,16 +7,8 @@
 <body>
  <div class ="content">
  <?php
- include 'session.php';
 
- include 'header.php';
- 
- include 'bitlyconnect.php';
-
- include 'tables.php';
-
- include 'classes.php';
-
+include 'include.php';
 $long_url = ''; 
 $title = '';
 $var= '0';
@@ -24,71 +16,24 @@ $ch = '';
 $method = '';
 $visibility = '';
 $group = '';
-
- ?>
-
-<!-- formulier voor het toevoegen van een bitly -->
- <form  class= "add-content" action="index.php" method="POST">
-
- URL: <input type = "text" placeholder = "paste long URL" name = "long_url"  required>
- Title: <input type = "text" placeholder = "titel" name = "title" required>
+$id = '';
+$data ='';
  
- <button class ="button" type = "submit">Save</button>
- 
- </form>
+//formulier voor het toevoegen van een bitly
+$newLink = new NewLink($token, $visibility, $group, $long_url, $title);
+$newLink->form();
 
-<?php
-// toevoegen van eeen link
-if(isset($_POST['long_url']))
-    {
-        $long_url = htmlspecialchars($_POST['long_url']);
-    }
+//voor meerdere groepen
+$groupChoice= new GroupChoice($groups, $group);
+$groupChoice->groupChoice();
+$group = $groupChoice->group;
 
-if(isset($_POST['title']))
-    {
-        $title = htmlspecialchars($_POST['title']);
-    }
-
- // toevoegen van de nieuwe link bij bitly
-$data= array('title'=>$title, 'long_url'=>$long_url );
-$id = 'none';
-$method ='post';
-
-$newLink = new Connect($data, $id, $token, $method, $visibility, $group);
-$newLink->connect();
+// tabel met weergave van de links
+$choice=new TableHeader($data, $id, $token, $method, $visibility, $group);
+$choice->tableHeader();
 
 ?>
 
-<!-- voor meerdere groepen -->
 
-<div class="group-choice"> 
-<form  action="" method="post">
-    <select name="var" onchange="this.form.submit();">
-<?php foreach($groups['groups'] as $group){
-    $group = $group['guid'];?>
-    <option value="<?php $group ?>"><?php echo $group ?></option>                
-<?php   
-}?>
-  </select>
-</form> 
-</div>
-<?php
-$choice=new Choice();
-$choice->form();
-$visibility = $choice->visibility;
-
-
-$table = new Table($data, $id, $token, $method, $visibility, $group);
-$table->table();
-
-
-
-
-?>
-    </div>
-    </div>
-
-
-</body>
 
 

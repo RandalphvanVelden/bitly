@@ -7,15 +7,13 @@
  <div class ="content">
    
    <?php
-include 'session.php';
+include 'include.php';
 
-include 'header.php';
-
-include 'bitlyconnect.php';
 
 // weergeven meegestuurde data die nodig is
 $link = $_GET['link'];
 $id= $link['id'];
+$group = $link['group'];
 
 if (isset($link['title'])){ $title = $link['title'];}
 else {$title = '';}
@@ -41,10 +39,10 @@ if(isset($_POST['title']))
   }
 
 
-// versturen van de aangepaste dat naar bitly
+// versturen van de aangepaste link naar bitly
 $data= array('title'=>$title );
 $method ='patch';
-
+$visibility = '';
 $newLink = new Connect($data, $id, $token, $method, $visibility, $group);
 $newLink->connect();
 
