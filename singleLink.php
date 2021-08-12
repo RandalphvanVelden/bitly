@@ -7,8 +7,8 @@
  <div class ="content">
    
    <?php
-include 'include.php';
 
+include 'include.php';
 
 // weergeven meegestuurde data die nodig is
 $link = $_GET['link'];

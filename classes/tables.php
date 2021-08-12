@@ -41,9 +41,17 @@ function tableHeader(){
                         if(isset($_POST['var']))
                         {
                             $var = $_POST['var'];
-                            if ($var == 1) $var = 'visible';
-                            if ($var == 2) $var = 'hidden';
-                            if ($var == 3) $var = 'both';
+                            switch ($var){
+                            case 1:
+                                 $var = 'visible';
+                                 break;
+                            case 2:
+                                 $var = 'hidden';
+                                 break;
+                            case 3:
+                                 $var = 'both';
+                                 break;
+                            }
                         }
                        
                         else $var = 'visible';

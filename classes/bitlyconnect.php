@@ -31,12 +31,20 @@ class Connect
     else{curl_setopt($ch, CURLOPT_URL, "https://api-ssl.bitly.com/v4/bitlinks/$this->id");}
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    if($this->method =='post'){curl_setopt($ch, CURLOPT_POST, 1);}
-    if($this->method == 'patch'){curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');}
-    if($this->method == 'get'){curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');}
+    
+    switch($this->method){
+    case 'post': 
+        curl_setopt($ch, CURLOPT_POST, 1);
+        break;
+    case 'patch':
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+      break;
+    case 'get':
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+      break;
 
     if($this->method !== 'get'){curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($this->data));} // niet nodig met een get request
-
+    }
     $headers = array();
     $headers[] = "Authorization: Bearer {$this->token}";
 

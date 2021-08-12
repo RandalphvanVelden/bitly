@@ -12,4 +12,6 @@ include 'classes/newLink.php';
 
 include 'classes/groupChoice.php';
 
+include 'classes/connection.php';
+
  
