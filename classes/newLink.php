@@ -1,18 +1,13 @@
 <?php
 class NewLink{
     public $token;
-    public $visibility;
-    public $group;
     public $long_url;
     public $title;
+    public $data;
 
-    function __construct($token, $visibility, $group, $long_url, $title)
+    function __construct($token)
     {
         $this->token = $token;
-        $this->visibility = $visibility;
-        $this->group = $group;
-        $this->long_url = $long_url;
-        $this->$title = $title;
     }
     
     function form(){ 
@@ -36,13 +31,13 @@ class NewLink{
             }
 
         // toevoegen van de nieuwe link bij bitly
-        $data= array('title'=>$this->title, 'long_url'=>$this->long_url );
-        $id = 'none';
-        $method ='post';
-
-        $newLink = new Connect($data, $id, $this->token, $method, $this->visibility, $this->group);
-        $newLink->connect();
-
+        $this->data= array('title'=>$this->title, 'long_url'=>$this->long_url );
+        
+        $newLink = new Post($this->data, $this->token);
+        $newLink->post();
+        $newLink->default();
+        $newLink->headers();
+        $newLink->result();
     
     }
 }

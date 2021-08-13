@@ -2,21 +2,14 @@
 <?php
 
 class TableHeader{
-    public $data;
-    public $id;
+   
     public $token;
-    public $method;
-    public $visibility;
     public $group;
     public $links;
     
-    function __construct($data, $id, $token, $method, $visibility, $group)
+    function __construct($token, $group)
     {
-        $this->data = $data;
-        $this->id = $id;
         $this->token = $token;
-        $this->method = $method;
-        $this->visibility = $visibility;
         $this->group = $group;
     }
 
@@ -80,31 +73,21 @@ function tableHeader(){
 
 
 class Table{ 
-    public $data;
-    public $id;
     public $token;
-    public $method;
     public $visibility;
     public $group;
     public $links;
 
-    function __construct($data, $id, $token, $method, $visibility, $group)
+    function __construct($links, $token, $visibility, $group)
     {
-        $this->data = $data;
-        $this->id = $id;
+        $this->links= $links;
         $this->token = $token;
-        $this->method = $method;
         $this->visibility = $visibility;
         $this->group = $group;
     }
 
     function table()
     {
-        $this->method ='get';
- 
-        $getInfo = new Connect($this->data, $this->id, $this->token, $this->method, $this->visibility, $this->group);
-        $getInfo->connect();
-        $this->links = $getInfo->links;
          
         foreach($this->links['links'] as $link ) 
             { if (!isset($link['title'])){$link['title']="";}

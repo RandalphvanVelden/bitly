@@ -19,8 +19,9 @@ $group = '';
 $id = '';
 $data ='';
  
+
 //formulier voor het toevoegen van een bitly
-$newLink = new NewLink($token, $visibility, $group, $long_url, $title);
+$newLink = new NewLink($token);
 $newLink->form();
 
 //voor meerdere groepen
@@ -29,7 +30,7 @@ $groupChoice->groupChoice();
 $group = $groupChoice->group;
 
 // tabel met weergave van de links
-$choice=new TableHeader($data, $id, $token, $method, $visibility, $group);
+$choice=new TableHeader($token, $group);
 $choice->tableHeader();
 
 ?>

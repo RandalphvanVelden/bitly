@@ -41,11 +41,11 @@ if(isset($_POST['title']))
 
 // versturen van de aangepaste link naar bitly
 $data= array('title'=>$title );
-$method ='patch';
-$visibility = '';
-$newLink = new Connect($data, $id, $token, $method, $visibility, $group);
-$newLink->connect();
 
+
+$patch = new Patch($id, $data, $token);
+$patch->patch();
+$patch->default();
   
 ?>
 

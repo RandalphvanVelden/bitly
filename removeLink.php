@@ -8,12 +8,13 @@ $id= $link['id'];
    
 // de link word op hidden gezet
 $data= array('archived'=>true);
-$method ='patch';
 
-$newLink = new Connect($data, $id, $token, $method, $visibility, $group);
-$newLink->connect();
+$remove = new Patch($id, $data, $token);
+$remove->patch();
+$remove->default();
+$remove->headers();
+$remove->result();
 
-  
 
 // redirect naar de index.php
 header('Location:index.php');

@@ -1,6 +1,19 @@
 <?php
-$this->visibility = 'hidden';
 
-$table = new Table($this->data, $this->id, $this->token, $this->method, $this->visibility, $this->group);
+
+$hidTable = new Hidden($this->group, $this->token);
+$hidTable->get();
+$hidTable->default();
+$hidTable->headers();
+$hidTable->result();
+$hidTable->links();
+$links = $hidTable->links;
+
+
+// ophalen van group links die niet verborgen zijn
+$visibility = 'hidden';
+
+$table = new Table( $links, $this->token, $visibility, $this->group);
 $table->table();
+
 ?>

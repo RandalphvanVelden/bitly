@@ -9,11 +9,13 @@ $id= $link['id'];
    
 // de link word terug gezet naar zichtbaar
 $data= array('archived'=>false);
-$method ='patch';
 
-$newLink = new Connect($data, $id, $token, $method, $visibility, $group);
-$newLink->connect();
-  
+$restore = new Patch($id, $data, $token);
+$restore->patch();
+$restore->default();
+$restore->headers();
+$restore->result();
+
 
 // redirect naar index.php
 header('Location:index.php');
