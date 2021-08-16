@@ -46,7 +46,8 @@ $data= array('title'=>$title );
 $patch = new Patch($id, $data, $token);
 $patch->patch();
 $patch->default();
-  
+$patch->patchHeaders();
+$patch->result();  
 ?>
 
 <!-- knop om weer naar index.php te gaan -->

@@ -100,7 +100,7 @@ class Post extends Connection{
    
       $this->url = 'https://api-ssl.bitly.com/v4/bitlinks';
  
-      $this->headervar = "'Authorization: Bearer {$this->token}', 'Content-Type: application/json'"; 
+      
 
       $this->options = array(
         CURLOPT_POST => 1,
@@ -108,12 +108,42 @@ class Post extends Connection{
       );   
     }
 
-    public function headers(){
+    public function postHeaders(){
       $this->headers = array();
       $this->headers[] = "Authorization: Bearer $this->token";
       $this->headers[] = 'Content-Type: application/json';
     }
 }
+
+// aanpassen van de links
+class Patch extends Connection{
+  public $id;
+  public $data;
+ 
+
+public function __construct($id, $data, $token){
+  $this->id = $id;
+  $this->data = $data;
+  $this->token = $token;
+}
+
+public function patch(){
+
+  $this->url = "https://api-ssl.bitly.com/v4/bitlinks/$this->id";
+  $this->options = array(
+  CURLOPT_CUSTOMREQUEST=> 'PATCH',
+  CURLOPT_POSTFIELDS => json_encode($this->data),
+  );   
+}
+
+public function patchHeaders(){
+  $this->headers = array();
+  $this->headers[] = "Authorization: Bearer $this->token";
+  $this->headers[] = 'Content-Type: application/json';
+}
+}
+
+
 
 // link voor alle niet verborgen links
 class Visible extends Connection{
@@ -166,34 +196,6 @@ class Hidden extends Connection{
   }
 }
 
-// aanpassen van de links
-class Patch extends Connection{
-    public $id;
-    public $data;
-    public $token;
-
-  public function __construct($id, $data, $token){
-    $this->id = $id;
-    $this->data = $data;
-    $this->$token = $token;
-  }
-
-  public function patch(){
-   
-    $this->url = "https://api-ssl.bitly.com/v4/bitlinks/$this->id";
-  
-    $this->options = array(
-    CURLOPT_CUSTOMREQUEST=> 'PATCH',
-    CURLOPT_POSTFIELDS => json_encode($this->data),
-    );   
-  }
-
-  public function headers(){
-    $this->headers = array();
-    $this->headers[] = "Authorization: Bearer $this->token";
-    $this->headers[] = 'Content-Type: application/json';
-  }
-}
 
 
 ?>

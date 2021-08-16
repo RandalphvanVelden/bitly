@@ -13,7 +13,7 @@ $data= array('archived'=>false);
 $restore = new Patch($id, $data, $token);
 $restore->patch();
 $restore->default();
-$restore->headers();
+$restore->patchHeaders();
 $restore->result();
 
 

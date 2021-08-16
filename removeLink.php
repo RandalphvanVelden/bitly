@@ -5,6 +5,7 @@ include 'include.php';
 $link = $_GET['link'];
 $id= $link['id'];
 
+
    
 // de link word op hidden gezet
 $data= array('archived'=>true);
@@ -12,8 +13,9 @@ $data= array('archived'=>true);
 $remove = new Patch($id, $data, $token);
 $remove->patch();
 $remove->default();
-$remove->headers();
+$remove->patchHeaders();
 $remove->result();
+
 
 
 // redirect naar de index.php

@@ -36,7 +36,7 @@ class NewLink{
         $newLink = new Post($this->data, $this->token);
         $newLink->post();
         $newLink->default();
-        $newLink->headers();
+        $newLink->postHeaders();
         $newLink->result();
     
     }
